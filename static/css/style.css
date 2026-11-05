@@ -1,0 +1,696 @@
+:root {
+    --bg-dark: #090a0f;
+    --bg-content: #0e1017;
+    --text-main: #E7E3DB;
+    --text-muted: #A8AFB5;
+    --accent-dark: #56606A;
+    --font-art: 'Cinzel', serif;
+    --font-tech: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: var(--font-tech);
+    overflow-x: hidden;
+}
+
+.hidden-svg-filters {
+    position: absolute;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+/* --- SEKCJA 1: PARALLAX & WIDMOWA BRAMA --- */
+.hero-parallax {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ambient-glow {
+    position: absolute;
+    width: 55vw;
+    height: 55vw;
+    max-width: 720px;
+    max-height: 720px;
+    background: radial-gradient(circle, rgba(168, 175, 181, 0.14) 0%, rgba(86, 96, 106, 0.05) 45%, rgba(9, 10, 15, 0) 70%);
+    border-radius: 50%;
+    z-index: 1;
+    pointer-events: none;
+    will-change: transform, opacity;
+}
+
+.parallax-image-container {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.parallax-svg {
+    width: 88vw;
+    max-width: 1380px;
+    height: auto;
+    overflow: visible;
+    filter: url(#phantom-filter) drop-shadow(0 0 30px rgba(231, 227, 219, 0.07));
+    will-change: transform, filter, opacity;
+}
+
+.svg-layer {
+    transform-origin: 756px 430px;
+    will-change: transform, opacity, filter;
+}
+
+.mist-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 45%, rgba(9, 10, 15, 0.05) 0%, rgba(9, 10, 15, 0.75) 65%, var(--bg-dark) 100%);
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 3;
+    will-change: opacity, transform;
+}
+
+.hero-parallax::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 22vh;
+    background: linear-gradient(to top, var(--bg-dark), transparent);
+    z-index: 4;
+    pointer-events: none;
+}
+
+.hero-title {
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    margin-top: 18vh;
+    will-change: transform, opacity, filter;
+}
+
+.hero-title h1 {
+    font-family: var(--font-art);
+    font-size: clamp(2.2rem, 4.5vw, 4rem);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: var(--text-main);
+    margin-bottom: 0.8rem;
+    text-shadow: 0 8px 30px rgba(0, 0, 0, 0.9);
+}
+
+.hero-title p {
+    font-size: 0.82rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    opacity: 0.85;
+}
+
+/* --- GŁÓWNA STRONA --- */
+.main-content {
+    position: relative;
+    z-index: 6;
+    background-color: var(--bg-dark);
+    min-height: 100vh;
+    padding-bottom: 6rem;
+}
+
+/* --- NAWIGACJA --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 8%;
+    border-bottom: 1px solid rgba(231, 227, 219, 0.08);
+    backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    background: rgba(9, 10, 15, 0.9);
+    z-index: 20;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-family: var(--font-art);
+    font-size: 1.25rem;
+    letter-spacing: 0.18em;
+    color: var(--text-main);
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--text-main);
+}
+
+/* --- O MNIE --- */
+.about-container {
+    max-width: 1180px;
+    margin: 6rem auto 0;
+    padding: 0 5%;
+    display: grid;
+    grid-template-columns: 1fr 1.35fr;
+    gap: 4.5rem;
+    align-items: center;
+}
+
+.image-frame {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid rgba(231, 227, 219, 0.14);
+    background: var(--bg-content);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+}
+
+.profile-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.section-subtitle {
+    display: inline-block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--text-muted);
+    margin-bottom: 0.8rem;
+}
+
+/* --- ELEGANCKIE NAPISY (MARIA KUŚMIERZ) --- */
+
+.about-headline {
+    font-family: var(--font-art);
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 1rem;
+    line-height: 1.4;
+    letter-spacing: 0.02em;
+}
+
+.about-headline2 {
+    font-family: var(--font-art);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 1rem;
+    line-height: 1.4;
+    letter-spacing: 0.02em;
+}
+
+.about-text-wrapper p,
+.about-description {
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+    font-size: 1.02rem;
+    font-weight: 300;
+}
+
+.dual-skills {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(231, 227, 219, 0.1);
+}
+
+.skill-box h3 {
+    font-family: var(--font-art);
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+}
+
+.skill-box p {
+    font-size: 0.88rem;
+    margin-bottom: 0;
+    color: var(--text-muted);
+}
+
+/* --- GALERIA SZTUKI --- */
+.art-gallery-section {
+    max-width: 1000px;
+    margin: 8rem auto 0;
+    padding: 0 5%;
+}
+
+.art-logo-banner {
+    text-align: center;
+    background: transparent;
+    padding: 2rem 1rem 3rem 1rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner-logo-img {
+    max-width: 380px;
+    width: 100%;
+    height: auto;
+    filter: invert(1) brightness(0.95) contrast(1.1);
+    margin-bottom: 1rem;
+}
+
+.banner-subtitle {
+    font-family: var(--font-art);
+    font-size: 0.85rem;
+    letter-spacing: 0.25em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.clean-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.clean-card {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--bg-content);
+    border: 1px solid rgba(231, 227, 219, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.clean-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.clean-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(231, 227, 219, 0.3);
+}
+
+.clean-card:hover img {
+    transform: scale(1.05);
+}
+
+/* --- PROJEKTY IT --- */
+.it-projects-section {
+    max-width: 1100px;
+    margin: 9rem auto 0;
+    padding: 0 5%;
+}
+
+.it-section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.it-section-header h2 {
+    font-family: var(--font-art);
+    font-size: 2.2rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+}
+
+.it-section-header p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+}
+
+.it-projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+}
+
+.it-project-card {
+    display: grid;
+    grid-template-columns: 1.2fr 1.5fr;
+    background: var(--bg-content);
+    border: 1px solid rgba(231, 227, 219, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    transition: border-color 0.3s ease;
+}
+
+.it-project-card:hover {
+    border-color: rgba(231, 227, 219, 0.3);
+}
+
+/* --- UJEDNOLICONE WYŚRODKOWANIE ZDJĘĆ W SLIDERACH --- */
+.it-slider-container {
+    position: relative;
+    width: 100%;
+    height: 360px;
+    overflow: hidden;
+    background: #000;
+    border-right: 1px solid rgba(231, 227, 219, 0.08);
+}
+
+.it-slider-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.4s ease-in-out;
+}
+
+.it-slider-track img {
+    min-width: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center center;
+    cursor: pointer;
+    flex-shrink: 0;
+    background: #050608;
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(9, 10, 15, 0.75);
+    color: var(--text-main);
+    border: 1px solid rgba(231, 227, 219, 0.2);
+    padding: 0.6rem 0.9rem;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.slider-btn:hover {
+    background: rgba(231, 227, 219, 0.3);
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
+}
+
+.it-project-content {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.it-project-content h3 {
+    font-family: var(--font-art);
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    color: var(--text-main);
+}
+
+.it-project-summary {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.it-tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+}
+
+.it-tech-stack span {
+    background: rgba(231, 227, 219, 0.06);
+    border: 1px solid rgba(231, 227, 219, 0.1);
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    color: var(--text-main);
+    letter-spacing: 0.03em;
+}
+
+.it-project-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.it-external-link {
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--text-main);
+    padding-bottom: 2px;
+    transition: opacity 0.3s;
+}
+
+.it-external-link:hover {
+    opacity: 0.75;
+}
+
+.it-link-placeholder {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+/* --- SEKCJA KONTAKT --- */
+.contact-section {
+    max-width: 800px;
+    margin: 8rem auto 0;
+    padding: 0 5%;
+    text-align: center;
+}
+
+.contact-box {
+    background: var(--bg-content);
+    border: 1px solid rgba(231, 227, 219, 0.12);
+    border-radius: 8px;
+    padding: 4rem 2rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+}
+
+.contact-box h2 {
+    font-family: var(--font-art);
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.contact-btn {
+    padding: 0.8rem 2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+
+.contact-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    filter: brightness(1.1);
+}
+
+.linkedin-btn {
+    background: #0077b5;
+    color: #ffffff;
+}
+
+.instagram-btn {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: #ffffff;
+}
+
+/* Elegancki tekst kontaktowy */
+.contact-info-text {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(231, 227, 219, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.contact-info-text a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    font-weight: 300;
+    transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.contact-info-text a:hover {
+    opacity: 0.7;
+    color: var(--text-muted);
+}
+
+/* --- MODAL DO ZDJĘĆ ZE STRZAŁKAMI --- */
+.art-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 6, 8, 0.92);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+.art-modal-content {
+    position: relative;
+    max-width: 850px;
+    width: 100%;
+    text-align: center;
+    background: var(--bg-content);
+    border: 1px solid rgba(231, 227, 219, 0.15);
+    border-radius: 6px;
+    padding: 2rem 3rem;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.9);
+}
+
+.art-close {
+    position: absolute;
+    top: 1rem;
+    right: 1.2rem;
+    font-size: 2rem;
+    color: var(--text-main);
+    cursor: pointer;
+    line-height: 1;
+    z-index: 10;
+}
+
+.art-modal-content img {
+    max-width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.art-modal-content p {
+    font-family: var(--font-art);
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    color: var(--text-main);
+}
+
+.modal-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(9, 10, 15, 0.8);
+    color: var(--text-main);
+    border: 1px solid rgba(231, 227, 219, 0.25);
+    padding: 0.8rem 1rem;
+    cursor: pointer;
+    z-index: 20;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.modal-nav-btn:hover {
+    background: rgba(231, 227, 219, 0.35);
+}
+
+.modal-prev {
+    left: 15px;
+}
+
+.modal-next {
+    right: 15px;
+}
+
+/* --- RESPONSYWNOŚĆ --- */
+@media (max-width: 900px) {
+    .about-container {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        margin-top: 3.5rem;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .clean-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .it-project-card {
+        grid-template-columns: 1fr;
+    }
+
+    .it-slider-container {
+        height: 250px;
+        border-right: none;
+        border-bottom: 1px solid rgba(231, 227, 219, 0.08);
+    }
+}
